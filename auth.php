@@ -6,7 +6,7 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $pseudo = $_POST['pseudo'];
-    $mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+    $mdp = password_verify($_POST['mdp'], PASSWORD_DEFAULT);
 
     echo 'connecte';
 
@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     echo 'Connecté';
         // Rediriger vers une page protégée ou d'accueil
-        header("Location: accueil.php");
+        header("Location: menu.html");
         exit();
     } else {
         echo 'Identifiants incorrects.';
