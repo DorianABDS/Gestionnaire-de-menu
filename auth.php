@@ -3,27 +3,40 @@ include 'db.php';
 
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $pseudo = $_POST['pseudo'];
-    $mdp = password_verify($_POST['mdp'], PASSWORD_DEFAULT);
-
-    echo 'connecte';
-
-    $stmt = $db->prepare("SELECT * FROM utilisateur WHERE pseudo = :pseudo AND mdp = :mdp");
-    $stmt->bindParam(':pseudo', $pseudo);
-    $stmt->bindParam(':mdp', $mdp);
-    $stmt->execute();
-
-    $query = $stmt->fetchAll();
+function CheckUserExist($pseudo, $mdp) {
+    try {
+        $sql1 = "SELECT * FROM utilisateur WHERE pseudo = :pseudo";
+        $stmt1 = $pdo->prepare($sql1);
+        $stmt1->execute(array(':pseudo' => $pseudo));
+        echo "La connexion à la base de données est réussie.";
+    }
+    catch (PDOException $e) {
+    echo "Erreur de connexion : " . $e->getMessage();
+    }
+    if ($stmt1->rowCount() === 1) {
+        $result1 = $stmt1->fetch(PDO::FETCH_ASSOC);
     
-    echo 'Connecté';
-        // Rediriger vers une page protégée ou d'accueil
-        header("Location: menu.html");
-        exit();
-    } else {
-        echo 'Identifiants incorrects.';
-    
+
+        if ($mdp) {
+            $sql2 = "SELECT * FROM utilisateur WHERE pseudo = :pseudo AND mdp = :mdp";
+            $stmt2 = $pdo->prepare($sql2);
+            $stmt2->execute(array(':pseudo' => $pseudo, ':mdp' => $mdp));
+        }
+         
+    }
+}
+
+if (isset($_POST['submit'])) {
+    if (!empty($_POST['pseudo']) && !empty($_POST['mdp'])) {
+        if (CheckUserExist($_POST['pseudo'], $_POST['mdp'])) {
+            header('location: menu.html');
+            exit(); // arrêter l'exécution du script
+            } 
+        else {
+            echo 'non connecté';
+            }
+        
+    }
 }
 ?>
 
@@ -37,14 +50,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <body>
 
     <h2>Formulaire de Connexion</h2>
-    <form method="POST">
-        <label for="username">Nom d'utilisateur:</label>
-        <input type="$_POST" id="pseudo" name="pseudo" required><br><br>
+    <form action="" method="POST">
+        <label for="pseudo">Nom d'utilisateur:</label>
+        <input type="text" id="pseudo" name="pseudo" required><br><br>
         
-        <label for="password">Mot de passe:</label>
-        <input type="$_POST" id="mdp" name="mdp" required><br><br>
+        <label for="mdp">Mot de passe:</label>
+        <input type="password" id="mdp" name="mdp" required><br><br>
         
-        <input type="submit" value="Se connecter">
+        <input type="submit" name="submit" value="Se connecter">
     </form>
 
     </body>
