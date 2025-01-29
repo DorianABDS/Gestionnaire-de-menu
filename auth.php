@@ -5,26 +5,36 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $pseudo = $_POST['pseudo'];
-    $mdp = password_verify($_POST['mdp'], PASSWORD_DEFAULT);
+    if (isset($_POST["submit"])) {
 
-    echo 'connecte';
+        if (!empty($_POST["pseudo"]) && !empty($_POST["mdp"])) {
+            $pseudo = htmlspecialchars($_POST["pseudo"]);
+            $mdp = password_hash(htmlspecialchars($_POST["mdp"]), PASSWORD_DEFAULT);
 
-    $stmt = $db->prepare("SELECT * FROM utilisateur WHERE pseudo = :pseudo AND mdp = :mdp");
-    $stmt->bindParam(':pseudo', $pseudo);
-    $stmt->bindParam(':mdp', $mdp);
-    $stmt->execute();
+            $stmt = $db->prepare("SELECT * FROM utilisateur WHERE pseudo = :pseudo AND mdp = :mdp");
+            $stmt->bindParam(':pseudo', $pseudo);
+            $stmt->bindParam(':mdp', $mdp);
+            $stmt->execute();
+        
+            $query = $stmt->fetch();
 
-    $query = $stmt->fetchAll();
+            var_dump($_POST);
     
-    echo 'Connecté';
-        // Rediriger vers une page protégée ou d'accueil
-        header("Location: menu.html");
-        exit();
-    } else {
-        echo 'Identifiants incorrects.';
+            $req = $db->prepare("INSERT INTO utilisateur (pseudo, mdp) VALUES (:pseudo, :mdp)");
+            $req->execute(array(
+                'pseudo' => $pseudo,
+                'mdp' => $mdp
+            ));
     
+            echo 'Vous êtes bien inscrit';
+            header("Location: menu.html");
+            exit();
+        } else {
+            echo 'Identifiants incorrects';
+        }
+    }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -38,11 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <h2>Formulaire de Connexion</h2>
     <form method="POST">
-        <label for="username">Nom d'utilisateur:</label>
-        <input type="$_POST" id="pseudo" name="pseudo" required><br><br>
+        <label for="pseudo">Nom d'utilisateur:</label>
+        <input type="text" id="pseudo" name="pseudo" required><br><br>
         
-        <label for="password">Mot de passe:</label>
-        <input type="$_POST" id="mdp" name="mdp" required><br><br>
+        <label for="mdp">Mot de passe:</label>
+        <input type="password" id="mdp" name="mdp" required><br><br>
         
         <input type="submit" value="Se connecter">
     </form>
