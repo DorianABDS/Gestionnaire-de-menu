@@ -21,9 +21,19 @@
                 </tr>
             </tread>
             <tbody>
-                <?php
-                include 'db.php';
-                ?>
+            <?php
+            servername = 'localhost';
+            $username = 'root';
+            $password = '';
+            $dbname = "gestionnaire_de_menu";
+
+            // Create connection
+            $conn = new mysqli($servername, $username, $password, $dbname);
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            ?>
                 <tr>
                     <td>1</td>
                     <td>1</td>
