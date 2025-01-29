@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
-    
+
     $servername = 'localhost';
     $username = "root";
     $password = "";
@@ -13,6 +13,6 @@ if (isset($_GET["id"])) {
     $sql = "DELETE FROM plat WHERE id = $id";
     $db->query($sql);
 }
-header("Location: ../Gestionnaire-de-menu/index.php");
+header("Location: ../Gestionnaire-de-menu/plat.php");
 exit;
 ?>
