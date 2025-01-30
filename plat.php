@@ -9,10 +9,10 @@
 <body>
     <div class="container my-5">
         <h2> Plats </h2>
-        <a class="btn btn-primary" href="../Gestionnaire-de-menu/nv_plat.php" role="button">Nouveau Plat</a>
+        <a class="btn btn-primary btn-sm" href="../Gestionnaire-de-menu/nv_plat.php" role="button">Nouveau Plat</a>
          <br>
          <table class="table">
-            <tread>
+            <thead>
                 <tr>
                     <th>id</th>
                     <th>nom</th>
@@ -20,7 +20,7 @@
                     <th>description</th>
                     <th>prix</th>
                 </tr>
-            </tread>
+            </thead>
             <tbody>
             <?php
             $servername = 'localhost';

@@ -15,63 +15,39 @@ $prix = "";
 $errorMessage = "";
 $successMessage = "";
 
-if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
-    // GET method: Show the data of the client
+if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+    $id = $_POST["id"];
+    $nom = $_POST["nom"];
+    $ingredient = $_POST["ingredient"];
+    $description = $_POST["description"];
+    $prix = $_POST["prix"];
 
-    if (!isset($_GET["id"])) {
-        header("Location: ../Gestionnaire-de-menu/plat.php");
-        exit;
-    }
+    do {
+        if ( empty($nom) || empty($ingredient) || empty($description) || empty($prix) ) {
+            $errorMessage = "Veuillez remplir tous les champs";
+            break;
+        }
 
-    $id = $_GET["id"];
-
-    // read the row of the selected "plat" from database table
-    $sql = "SELECT * FROM plat WHERE id = $id";
+    //ajout d'un nouveau plat
+    $sql = "INSERT INTO plat (nom, ingredient, description, prix) VALUES ('$nom', '$ingredient', '$description', '$prix')";
     $result = $db->query($sql);
-    $row = $result->fetch_assoc();
 
-    if (!$row) {
-        header("Location: ../Gestionnaire-de-menu/plat.php");
-        exit;
+    if (!$result) {
+        $errorMessage = "Erreur lors de l'ajout du plat";
+        break;
     }
 
-    $nom = $row["nom"];
-    $ingredient = $row["ingredient"];
-    $description = $row["description"];
-    $prix = $row["prix"];
-}
+    $nom = "";
+    $ingredient = "";
+    $description = "";
+    $prix = "";
 
-    else {
-        // POST method: Update the data of the client
+    $successMessage = "Plat modifié avec succès";
 
-        $id = $_POST["id"];
-        $nom = $_POST["nom"];
-        $ingredient = $_POST["ingredient"];
-        $description = $_POST["description"];
-        $prix = $_POST["prix"];
+    header ('Location: ../Gestionnaire-de-menu/plat.php');
+    exit;
 
-        do {
-            if ( empty($nom) || empty($ingredient) || empty($description) || empty($prix) ) {
-                $errorMessage = "Veuillez remplir tous les champs";
-                break;
-            }
-
-            // update the selected "plat" in the database table
-            $sql = "UPDATE plat SET nom = '$nom', ingredient = '$ingredient', description = '$description', prix = '$prix' WHERE id = $id";
-            
-            $result = $db->query($sql);
-
-            if ( !$result ) {
-                $errorMessage = "Erreur lors de la modification du plat";
-                break;
-            }
-
-            $successMessage = "Plat modifié avec succès";
-
-            header ('Location: ../Gestionnaire-de-menu/plat.php');
-            exit;
-
-        } while (false);
+} while (false);
 
 }
 ?>
@@ -99,7 +75,6 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
         ?>
 
         <form method="post">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
             <div class="row mb-3">
                 <label class="col-sm-3 col-form-label">Nom</label>
                 <div class="col-sm-6">
