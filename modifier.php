@@ -86,7 +86,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 </head>
 <body>
     <div class="container my-5">
-        <h2>Nouveau Plat</h2>
+        <h2>Modification</h2>
 
         <?php
         if ( !empty($errorMessage) ) {
