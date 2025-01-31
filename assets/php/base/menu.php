@@ -52,8 +52,8 @@
                     <td>$row[description]</td>
                     <td>$row[prix]</td>
                     <td>
-                        <a class='btn btn-primary btn-sm' href='../crud/modifier.php?id=$row[id]'>Modifier</a>
-                        <a class='btn btn-danger btn-sm' href='../crud/supprimer.php?id=$row[id]'>Supprimer</a>
+                        <a class='btn btn-primary btn-sm' href='../crud/menu_modifier.php?id=$row[id]'>Modifier</a>
+                        <a class='btn btn-danger btn-sm' href='../crud/menu_supprimer.php?id=$row[id]'>Supprimer</a>
                     </td>
                 </tr>
                 ";
