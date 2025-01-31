@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/styles/auth.css" />
+        <title>Formulaire de Connexion</title>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Connexion</h2>
+            <form class="container-form" action="assets/php/connexion/login.php" method="POST">
+                
+                <input class="input-nom" type="text" id="pseudo" placeholder="Nom d'utilisateur" name="pseudo" required><br>
+                
+                <input class="input-nom" type="password" id="mdp" placeholder="Mot de passe" name="mdp" required><br>
+                    
+                <input class="input-btn" type="submit" value="Se connecter">
+                
+            </form>
+            <p> Vous n'arrivez pas à vous connecter ? <a href="#auth.html">Bah tant pis !</a></p>
+        </div>
+    </body>
+</html>

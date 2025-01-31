@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Connexion réussie !";
         session_start();
         $_SESSION["user"] = $result;
-        header('location: menu.html');
+        header('location: ../base/menu.php');
 
         // Rediriger vers une autre page ou effectuer d'autres actions
     } else {
@@ -28,29 +28,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Connexion</title>
-</head>
-
-<body>
-
-    <h2>Formulaire de Connexion</h2>
-    <form method="POST">
-        <label for="username">Nom d'utilisateur:</label>
-        <input type="text" id="pseudo" name="pseudo" required><br><br>
-
-        <label for="password">Mot de passe:</label>
-        <input type="password" id="mdp" name="mdp" required><br><br>
-
-        <input type="submit" value="Se connecter">
-    </form>
-
-</body>
-
-</html>
