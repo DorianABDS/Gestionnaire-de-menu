@@ -10,15 +10,15 @@
     <div class="container my-5">
         <h2> Plats </h2>
         <a class="btn btn-primary btn-sm" href="../base/nv_plat.php" role="button">Nouveau Plat</a>
+        <a class="btn btn-dark btn-sm" href="../base/menu.php" role="button">Accès au menu</a>
          <br>
          <table class="table">
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>nom</th>
-                    <th>ingredient</th>
-                    <th>description</th>
-                    <th>prix</th>
+                    <th>Nom</th>
+                    <th>Ingredient</th>
+                    <th>Description</th>
+                    <th>Prix</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,7 +48,6 @@
             while($row = $result->fetch_assoc()) {
                 echo "
                 <tr>
-                    <td>$row[id]</td>
                     <td>$row[nom]</td>
                     <td>$row[ingredient]</td>
                     <td>$row[description]</td>
