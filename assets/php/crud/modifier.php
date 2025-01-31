@@ -19,7 +19,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
     // GET method: Show the data of the client
 
     if (!isset($_GET["id"])) {
-        header("Location: ../Gestionnaire-de-menu/plat.php");
+        header("Location: ../base/plat.php");
         exit;
     }
 
@@ -31,7 +31,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
     $row = $result->fetch_assoc();
 
     if (!$row) {
-        header("Location: ../Gestionnaire-de-menu/plat.php");
+        header("Location: ../base/plat.php");
         exit;
     }
 
@@ -68,7 +68,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 
             $successMessage = "Plat modifié avec succès";
 
-            header ('Location: ../Gestionnaire-de-menu/plat.php');
+            header ('Location: ../base/plat.php');
             exit;
 
         } while (false);
@@ -145,7 +145,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
                 <div class="col-sm-3 d-grid">
-                    <a class="btn btn-outline-primary" href="../Gestionnaire-de-menu/plat.php" role="button">Retour</a>
+                    <a class="btn btn-outline-primary" href="../base/plat.php" role="button">Retour</a>
                 </div>
             </div>
         </form>

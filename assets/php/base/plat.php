@@ -9,7 +9,7 @@
 <body>
     <div class="container my-5">
         <h2> Plats </h2>
-        <a class="btn btn-primary btn-sm" href="../Gestionnaire-de-menu/nv_plat.php" role="button">Nouveau Plat</a>
+        <a class="btn btn-primary btn-sm" href="../base/nv_plat.php" role="button">Nouveau Plat</a>
          <br>
          <table class="table">
             <thead>
@@ -54,8 +54,8 @@
                     <td>$row[description]</td>
                     <td>$row[prix]</td>
                     <td>
-                        <a class='btn btn-primary btn-sm' href='../Gestionnaire-de-menu/modifier.php?id=$row[id]'>Modifier</a>
-                        <a class='btn btn-danger btn-sm' href='../Gestionnaire-de-menu/supprimer.php?id=$row[id]'>Supprimer</a>
+                        <a class='btn btn-primary btn-sm' href='../crud/modifier.php?id=$row[id]'>Modifier</a>
+                        <a class='btn btn-danger btn-sm' href='../crud/supprimer.php?id=$row[id]'>Supprimer</a>
                     </td>
                 </tr>
                 ";

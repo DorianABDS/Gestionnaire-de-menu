@@ -13,6 +13,6 @@ if (isset($_GET["id"])) {
     $sql = "DELETE FROM plat WHERE id = $id";
     $db->query($sql);
 }
-header("Location: ../Gestionnaire-de-menu/plat.php");
+header("Location: ../base/plat.php");
 exit;
 ?>
