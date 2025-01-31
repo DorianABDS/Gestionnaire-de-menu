@@ -4,12 +4,9 @@ $username = 'root';
 $password = '';
 $dbname = "gestionnaire_de_menu";
 
-$db = new mysqli($servername, $username, $password, $dbname);
+$db = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 // Vérifier la connexion
-if ($db->connect_error) {
+if (!$db) {
     die("Échec de la connexion : " . $db->connect_error);
 }
-
-
-?>
