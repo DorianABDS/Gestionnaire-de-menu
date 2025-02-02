@@ -2,10 +2,10 @@
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 
-    $servername = 'localhost';
-    $username = "root";
-    $password = "";
-    $dbname = "gestionnaire_de_menu";
+    $servername = 'localhost:3306';
+    $username = 'dorian';
+    $password = 'sD&gKlyRdl4w2%1e';
+    $dbname = "dorian-abbadessa_gestionnaire_de_menu";
 
  // Create connection
  $db = new mysqli($servername, $username, $password, $dbname);
