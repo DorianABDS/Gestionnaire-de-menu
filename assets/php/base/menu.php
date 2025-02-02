@@ -23,7 +23,7 @@
             <tbody>
             <?php
             $servername = 'localhost:3306';
-            $username = 'dorian';
+            $username = 'Dorian';
             $password = 'sD&gKlyRdl4w2%1e';
             $dbname = "dorian-abbadessa_gestionnaire_de_menu";
 
