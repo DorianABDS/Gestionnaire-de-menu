@@ -25,7 +25,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 
     $id = $_GET["id"];
 
-    // Lire la ligne de la table de base de données de plate-forme sélectionnée sélectionnée
+    // Lire la ligne de la table de base de données de plate-forme sélectionnée
     $sql = "SELECT * FROM plat WHERE id = $id";
     $result = $db->query($sql);
     $row = $result->fetch_assoc();
