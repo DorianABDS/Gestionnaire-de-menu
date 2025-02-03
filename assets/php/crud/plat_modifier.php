@@ -16,7 +16,7 @@ $errorMessage = "";
 $successMessage = "";
 
 if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
-    // Obtenir la méthode: afficher les données du client
+    // GET la méthode: afficher les données du client
 
     if (!isset($_GET["id"])) {
         header("Location: ../base/plat.php");
