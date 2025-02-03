@@ -16,7 +16,7 @@ $errorMessage = "";
 $successMessage = "";
 
 if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
-    // GET method: Show the data of the client
+    // Obtenir la méthode: afficher les données du client
 
     if (!isset($_GET["id"])) {
         header("Location: ../base/plat.php");
@@ -25,7 +25,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 
     $id = $_GET["id"];
 
-    // read the row of the selected "plat" from database table
+    // Lire la ligne de la table de base de données de plate-forme sélectionnée sélectionnée
     $sql = "SELECT * FROM plat WHERE id = $id";
     $result = $db->query($sql);
     $row = $result->fetch_assoc();
@@ -42,7 +42,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
 }
 
     else {
-        // POST method: Update the data of the client
+        // POST méthode de publication: Mettre à jour les données du client
 
         $id = $_POST["id"];
         $nom = $_POST["nom"];
@@ -56,7 +56,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'GET' ) {
                 break;
             }
 
-            // update the selected "plat" in the database table
+            // Mettre à jour le "plateau" sélectionné dans la table de la base de données
             $sql = "UPDATE plat SET nom = '$nom', ingredient = '$ingredient', description = '$description', prix = '$prix' WHERE id = $id";
             
             $result = $db->query($sql);
